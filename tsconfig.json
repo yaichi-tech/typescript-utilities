@@ -1,0 +1,18 @@
+{
+  "compilerOptions": {
+    "target": "ESNext",
+    "module": "ESNext",
+    "moduleResolution": "Bundler",
+    "strict": true,
+    "skipLibCheck": true,
+    "lib": [
+      "ESNext"
+    ],
+    "types": [
+      "@types/jest"
+    ],
+    "jsx": "react-jsx",
+    "esModuleInterop": true,
+    "noUncheckedIndexedAccess": true
+  }
+}
