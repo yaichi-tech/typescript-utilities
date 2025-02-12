@@ -1,6 +1,6 @@
 import { parseISO } from "date-fns";
 import { type Result, err, ok } from "neverthrow";
-import { type ZodType, z } from "zod";
+import { type ZodSchema, z } from "zod";
 import { ValidationError } from "../general/error";
 
 export const numberInString = z.string().transform((val, ctx) => {
@@ -26,11 +26,15 @@ export const dateInString = z.string().transform((val) => {
 
 /** zodで定義した型を生成する関数 */
 export const createEntity =
-  <T>(schema: ZodType<T>) =>
+  <T>(schema: ZodSchema<T>) =>
   (value: unknown): Result<T, ValidationError> => {
     const parsed = schema.safeParse(value);
     if (!parsed.success) {
-      console.error(parsed.error.issues);
+      console.error({
+        issues: parsed.error.issues,
+        description: schema.description,
+        value: value,
+      });
       return err(new ValidationError("validation error"));
     }
     return ok(parsed.data);
