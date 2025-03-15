@@ -17,7 +17,7 @@ export const chunkArray = <T>(array: T[], size = 1): T[][] => {
 /**
  * 配列検索の最適化のために検索要素をキーとするオブジェクトを作成する。
  * @param array 変換する配列
- * @param keyProperty キーとして使用するプロパティ
+ * @param keyProperty キーとして使用するプロパティ。IDなど一意の値である必要がある。
  * @returns 検索性能が改善されたオブジェクト
  */
 export const arrayToObject = <T, K extends keyof T>(

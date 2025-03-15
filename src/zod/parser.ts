@@ -3,6 +3,7 @@ import { type Result, err, ok } from "neverthrow";
 import { type ZodSchema, z } from "zod";
 import { ValidationError } from "../general/error";
 
+/** 数字の文字列をnumberに変換するスキーマ */
 export const numberInString = z.string().transform((val, ctx) => {
   const parsed = Number.parseInt(val);
   if (Number.isNaN(parsed)) {
@@ -20,6 +21,7 @@ export const numberInString = z.string().transform((val, ctx) => {
   return parsed;
 });
 
+/** ISO8601形式の文字列をDateに変換するスキーマ */
 export const dateInString = z.string().transform((val) => {
   return parseISO(val);
 });
