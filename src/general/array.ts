@@ -35,3 +35,21 @@ export const arrayToObject = <T, K extends keyof T>(
     {} as Record<string, T>,
   );
 };
+
+/**
+ * 等差数列を出力する
+ * @param length 要素数
+ * @param initial 初期値
+ * @param diff 刻み幅
+ * @returns 数列
+ */
+export const progression = (
+  length: number,
+  initial: number,
+  diff: number,
+): number[] => {
+  if (length < 1) {
+    throw new Error("Length must be greater than 0");
+  }
+  return [...new Array(length)].map((_, i) => initial + i * diff);
+};
