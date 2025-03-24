@@ -1,18 +1,19 @@
+import { tz } from "@date-fns/tz";
 import { format, parseISO } from "date-fns";
-import { ja } from "date-fns/locale";
 
 /**
  *
  * @param isoString タイムゾーン付きのISOString
- * @returns 日本時刻の年月日
+ * @returns 日本時刻の年月日を取得する。
  * @example isoToJaYMD("2022-01-01T00:00:00.000Z") => { year: "2022", month: "1", day: "1" }
+ * isoToJaYMD("2022-01-01T15:00:00.000Z") => { year: "2022", month: "1", day: "2" }
  */
 export const isoToJaYMD = (isoString: string) => {
   const jstDate = parseISO(isoString);
   // フォーマットされた日付を作成
-  const year = format(jstDate, "yyyy", { locale: ja });
-  const month = format(jstDate, "M", { locale: ja });
-  const day = format(jstDate, "d", { locale: ja });
+  const year = format(jstDate, "yyyy", { in: tz("Asia/Tokyo") });
+  const month = format(jstDate, "M", { in: tz("Asia/Tokyo") });
+  const day = format(jstDate, "d", { in: tz("Asia/Tokyo") });
   return {
     year,
     month,
